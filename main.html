@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Генератор чисел</title>
+  <link href="./Style.css" rel="stylesheet">
+</head>
+<body>
+<h2>Генератор чисел по диапазону</h2>
+<label>От: <input type="number" id="start" value="1"></label><br>
+<label>До: <input type="number" id="end" value="10"></label><br>
+<button onclick="generateNumbers()">Сгенерировать</button>
+<button onclick="copyToClipboard()">Скопировать</button>
+<textarea id="result" readonly></textarea>
+
+<script>
+  function generateNumbers() {
+    const start = parseInt(document.getElementById('start').value);
+    const end = parseInt(document.getElementById('end').value);
+    let output = '';
+
+    if (!isNaN(start) && !isNaN(end) && start <= end) {
+      for (let i = start; i <= end; i++) {
+        output += i + '\n';
+      }
+    } else {
+      output = 'Некорректный диапазон';
+    }
+
+    document.getElementById('result').value = output.trim();
+  }
+
+  function copyToClipboard() {
+    const textarea = document.getElementById('result');
+    textarea.select();
+    document.execCommand('copy');
+    alert('Скопировано!');
+  }
+</script>
+</body>
+</html>
